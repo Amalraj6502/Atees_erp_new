@@ -1,0 +1,36 @@
+<odoo>
+
+    <record model="ir.module.category" id="atees_relieve_groups">
+        <field name="name">Atees Relive Approve</field>
+        <field name="sequence">52</field>
+    </record>
+
+    <!-- Create a simple custom group -->
+    <record id="group_relieve_authorized" model="res.groups">
+        <field name="name">See The Releving Forms</field>
+        <field name="category_id" ref="atees_experience_certificate.atees_relieve_groups"/>
+    </record>
+
+    <record id="access_dept_head" model="res.groups">
+        <field name="name">Deptarment Head</field>
+        <field name="category_id" ref="atees_experience_certificate.atees_relieve_groups"/>
+    </record>
+
+    <record id="access_admin_head" model="res.groups">
+        <field name="name">Admin Head</field>
+        <field name="category_id" ref="atees_experience_certificate.atees_relieve_groups"/>
+    </record>
+
+    <record id="access_hr_head" model="res.groups">
+        <field name="name">HR Head</field>
+        <field name="category_id" ref="atees_experience_certificate.atees_relieve_groups"/>
+    </record>
+
+        <record id="access_reject_relieve" model="res.groups">
+        <field name="name">Reject Relieve</field>
+        <field name="category_id" ref="atees_experience_certificate.atees_relieve_groups"/>
+    </record>
+
+
+
+</odoo>

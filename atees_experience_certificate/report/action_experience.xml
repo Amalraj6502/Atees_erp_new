@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Define Paper Format First -->
+    <record id="paper_format_experience_certificate" model="report.paperformat">
+        <field name="name"> Paper Format</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">38</field>
+        </record>
+
+    <!-- Define Report Action -->
+    <record id="action_experience_certificate_atees" model="ir.actions.report">
+        <field name="name">Experience Certificate</field>
+        <field name="model">experience.certificate</field>
+        <field name="report_name">atees_experience_certificate.report_experience_certificate_atees</field>
+        <field name="report_file">atees_experience_certificate.report_experience_certificate_atees</field>
+        <field name="binding_model_id" ref="atees_experience_certificate.model_experience_certificate"/>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_type">report</field>
+        <field name="attachment_use">False</field>
+        <field name="paperformat_id" ref="atees_experience_certificate.paper_format_experience_certificate"/>
+    </record>
+
+</odoo>

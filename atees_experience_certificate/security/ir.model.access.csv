@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+experience_certificate_id,experience_certificate_name,model_experience_certificate,base.group_user,1,1,1,1
+access_relieve_form,access_relieve_form_name,model_relieve_form,base.group_user,1,1,1,1

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_relieving_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <!-- Specific Footer for this report -->
+                    <div class="footer o_standard_footer" style="font-size: 10px; color: #666; width: 100%; border-top: 1px solid #ddd; padding-top: 5px;">
+                        <div class="text-center">
+                            ATEES Infomedia Pvt Ltd | 2nd Floor | Ananya Tower|M.G Road | Thrissur-680001 | Ph:0487 244 5556 | 928 721 2121 | E-mail:info@atees.in | Web:www.atees.in
+                        </div>
+                    </div>
+
+                    <div class="page" style="font-family: 'Helvetica', 'Arial', sans-serif; font-size: 11pt; color: #000;">
+                        <!-- Title -->
+                        <div class="text-center" style="margin-top: 20px; margin-bottom: 40px;">
+                            <h3 style="font-weight: bold; text-transform: uppercase;">RELIEVING FORM</h3>
+                        </div>
+
+                        <!-- Top Info -->
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-6">
+                                <div><strong>Department: </strong><span t-field="doc.department_id.name"/></div>
+                                <div><strong>Designation: </strong><span t-field="doc.job_id.name"/></div>
+                            </div>
+                            <div class="col-6 text-right">
+                                <div><strong>Date of Join: </strong><span t-field="doc.join_date" t-options='{"widget": "date", "format": "dd.MM.yyyy"}'/></div>
+                                <div><strong>Date of Relieving: </strong><span t-field="doc.terminate_date" t-options='{"widget": "date", "format": "dd.MM.yyyy"}'/></div>
+                            </div>
+                        </div>
+
+                        <!-- Employee Address -->
+                        <div style="margin-bottom: 20px; margin-left: 2px;">
+                            <div style="font-weight: bold;"><span t-field="doc.employee_id.name"/></div>
+                            <div t-if="doc.employee_id.private_street"><span t-field="doc.employee_id.private_street"/></div>
+                            <div t-if="doc.employee_id.private_street2"><span t-field="doc.employee_id.private_street2"/></div>
+                            <div>
+                                <span t-if="doc.employee_id.private_city" t-field="doc.employee_id.private_city"/>
+                                <span t-if="doc.employee_id.private_state_id">, <span t-field="doc.employee_id.private_state_id.name"/></span>
+                            </div>
+                            <div>
+                                <span t-if="doc.employee_id.private_country_id" t-field="doc.employee_id.private_country_id.name"/>
+                                <span t-if="doc.employee_id.private_zip" t-field="doc.employee_id.private_zip"/>
+                            </div>
+                        </div>
+
+                        <!-- Declaration -->
+                        <div style="margin-bottom: 20px; text-align: justify;">
+                            I, <strong><span t-field="doc.employee_id.name"/></strong> declare that each of the items checked below are returned to office upon relieving and before issuance of final pay check.
+                        </div>
+
+                        <!-- Checkbox Style -->
+                        <style>
+                            .cb-container { display: inline-block; margin-right: 25px; margin-bottom: 5px;}
+                            .cb-box {
+                                display: inline-block;
+                                width: 14px;
+                                height: 14px;
+                                border: 1px solid #000;
+                                margin-right: 5px;
+                                vertical-align: middle;
+                                text-align: center;
+                                line-height: 12px;
+                                font-size: 10px;
+                                font-weight: bold;
+                            }
+                            .section-title { font-weight: bold; margin-top: 15px; margin-bottom: 5px; font-size: 11pt;}
+                            .items-block { margin-left: 5px; }
+                        </style>
+
+                        <!-- Items to be Returned -->
+                        <div class="section-title">Items to be Returned:</div>
+                        <div class="items-block">
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.id_card">✓</t></span> ID Card</span>
+                        </div>
+
+                        <!-- Devices -->
+                        <div class="section-title">Devices</div>
+                        <div class="items-block">
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.laptop">✓</t></span> Laptop</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.mobile">✓</t></span> Mobile</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.headset">✓</t></span> Headset</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.sim">✓</t></span> SIM</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.tab">✓</t></span> Tab</span>
+                        </div>
+
+                        <!-- Credentials -->
+                        <div class="section-title">Credentials</div>
+                        <div class="items-block">
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.flock">✓</t></span> Flock</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.gmail">✓</t></span> Gmail</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.erp">✓</t></span> ERP</span>
+                        </div>
+
+                        <!-- Credentials of Office -->
+                        <div class="section-title">Credentials of Office</div>
+                        <div class="items-block">
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.social_media">✓</t></span> Social Media</span>
+                            <span class="cb-container"><span class="cb-box"><t t-if="doc.server">✓</t></span> Server</span>
+                        </div>
+
+                        <!-- Others -->
+                        <div style="margin-top: 20px; margin-bottom: 30px;">
+                            <strong>Others:</strong> 
+                            <span style="border-bottom: 1px dotted #000; display: inline-block; width: 60%; padding-left: 10px;">
+                                <t t-if="doc.others" t-esc="doc.others"/>
+                            </span>
+                        </div>
+
+                        <!-- Place and Date -->
+                        <div style="margin-bottom: 40px;">
+                            <div style="margin-bottom: 5px;"><strong>Place:</strong> .....................................</div>
+                            <div><strong>Date:</strong> .....................................</div>
+                        </div>
+
+                        <!-- Signatures -->
+                        <div class="row" style="margin-top: 60px;">
+                            <div class="col-6">
+                                <div style="font-weight: bold; border-top: 1px solid #000; width: 60%; text-align: center; padding-top: 5px;">
+                                    Name and Signature of Employee:
+                                </div>
+                                <div style="margin-top: 5px; width: 60%; text-align: center; font-size: 10pt;">
+                                    <span t-field="doc.employee_id.name"/>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right">
+                                <div style="float: right; width: 60%;">
+                                    <div style="font-weight: bold; border-top: 1px solid #000; text-align: center; padding-top: 5px;">
+                                        HR Manager
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

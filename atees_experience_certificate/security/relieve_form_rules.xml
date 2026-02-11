@@ -1,0 +1,25 @@
+<odoo>
+
+    <!-- Admin and HR can see all records -->
+    <record id="relieve_form_admin_rule" model="ir.rule">
+        <field name="name">Relieve Form: Admin and HR Access</field>
+        <field name="model_id" ref="model_relieve_form"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups"
+               eval="[(4, ref('atees_experience_certificate.access_admin_head')), (4, ref('atees_experience_certificate.access_hr_head'))]"/>
+    </record>
+
+    <!-- Department Head (Employee's Parent) can see only their subordinates -->
+    <record id="relieve_form_department_head_rule" model="ir.rule">
+        <field name="name">Relieve Form: Department Head Access</field>
+        <field name="model_id" ref="model_relieve_form"/>
+        <field name="domain_force">[
+            '|',
+            ('employee_id.user_id', '=', user.id),
+            ('department_id.manager_id.user_id', '=', user.id)
+            ]
+        </field>
+        <field name="groups" eval="[(4, ref('atees_experience_certificate.access_dept_head'))]"/>
+    </record>
+
+</odoo>

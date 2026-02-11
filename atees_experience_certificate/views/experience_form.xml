@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_experience_certificate_tree" model="ir.ui.view">
+        <field name="name">experience.certificate.tree</field>
+        <field name="model">experience.certificate</field>
+        <field name="arch" type="xml">
+            <list string="Experience Certificates">
+                <field name="name" readonly="1"/>
+                            <field name="partner_title_id"/>
+                            <field name="employee_id"/>
+                            <field name="job_title_id"/>
+                            <field name="gender"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_experience_certificate_form" model="ir.ui.view">
+        <field name="name">experience.certificate.form</field>
+        <field name="model">experience.certificate</field>
+        <field name="arch" type="xml">
+            <form string="Experience Certificate">
+                <sheet>
+                    <group string="Experience Certificate Details">
+
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="new_name" invisible="1"/>
+                            <field name="partner_title_id"/>
+                            <field name="employee_id"/>
+                            <field name="job_title_id"/>
+                            <field name="gender"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+
+
+                            <field name="period"/>
+                            <field name="salary"/>
+                            <field name="created_on"/>
+                            <field name="rating" widget="rating" options="{'readonly': False, 'max': 5}" />
+                        </group>
+
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Action -->
+    <record id="action_experience_certificate" model="ir.actions.act_window">
+        <field name="name">Experience Certificates</field>
+        <field name="res_model">experience.certificate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu -->
+
+    <menuitem id="menu_experience_certificate_root"
+              name="Employee Certificates"
+              parent="hr.menu_config_employee"
+              sequence="10"/>
+
+    <menuitem id="menu_experience_certificate"
+              name="Experience Certificates"
+              parent="menu_experience_certificate_root"
+              action="action_experience_certificate"
+              sequence="10"/>
+</odoo>

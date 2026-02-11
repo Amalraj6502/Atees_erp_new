@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_relieving_form" model="report.paperformat">
+        <field name="name">Relieving Form Paperformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_relieving_form" model="ir.actions.report">
+        <field name="name">Relieving Form</field>
+        <field name="model">relieve.form</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">atees_experience_certificate.report_relieving_form</field>
+        <field name="report_file">atees_experience_certificate.report_relieving_form</field>
+        <field name="print_report_name">'Relieving Form - %s' % (object.employee_id.name)</field>
+        <field name="binding_model_id" ref="model_relieve_form"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_relieving_form"/>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<odoo>
+    <template id="report_experience_certificate_atees">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style="font-family: Arial; font-size: 11pt; padding: 50px;">
+
+                        <!-- Header -->
+                        <div style="text-align: left; margin-top: -40px;">
+                            <p>
+                                <span t-field="doc.created_on" t-options='{"widget": "date", "format": "dd.MM.yyyy"}'/><br/>
+                                <strong>REF: </strong><span t-field="doc.name"/>
+                            </p>
+                            <p>
+                                <!-- Access employee safely with company context -->
+                                <span t-esc="doc.employee_id.with_company(doc.company_id.id).name"/><br/>
+                                <span t-esc="doc.employee_id.with_company(doc.company_id.id).private_street"/><br/>
+                                <span t-esc="doc.employee_id.with_company(doc.company_id.id).private_city"/>
+                            </p>
+                        </div>
+
+                        <!-- Title -->
+                        <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+                            <h3><strong>TO WHOMSOEVER IT MAY CONCERN</strong></h3>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="mt32">
+                            <p style="text-align: justify; line-height: 1.6;">
+                                This is to certify that <strong> <span t-esc="doc.partner_title_id.name"/>
+                                    <span t-esc="doc.employee_id.with_company(doc.company_id.id).name"/>
+                                </strong> has worked at <strong>ATEES Infomedia Pvt.Ltd</strong> as
+                                <strong><span t-field="doc.job_title_id.name"/></strong>, since
+                                <span t-field="doc.from_date" t-options='{"widget": "date", "format": "dd.MM.yyyy"}'/> to
+                                <span t-field="doc.to_date" t-options='{"widget": "date", "format": "dd.MM.yyyy"}'/>.
+                                During this term, the employee remained dedicated to their work.
+                            </p>
+                            <p style="text-align: justify; line-height: 1.6;">
+                                During their tenure, they were sincere, hardworking, and helpful in the advancement of the company. We wish them success in all future endeavors.
+                            </p>
+                        </div>
+
+                        <!-- Footer -->
+                        <div style="margin-top: 80px;">
+                            <p>Yours Sincerely,</p>
+                            <br/><br/>
+                            <p><strong>HR MANAGER</strong><br/>
+                            ATEES Infomedia Pvt.Ltd, Thrissur</p>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
